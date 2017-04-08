@@ -6,7 +6,8 @@ export CFLAGS="-O2 -g -I$PREFIX/include $CFLAGS"
 export CXXFLAGS="-O2 -g -I$PREFIX/include $CXXFLAGS"
 
 mkdir -p gslcblas
-mv "$PREFIX/lib/libgslcblas.*" gslcblas/
+mv "$PREFIX"/lib/libgslcblas.* gslcblas/
+
 if [ "$(uname)" == "Darwin" ]
 then
     ln -s "$PREFIX/lib/libopenblas.dylib" "$PREFIX/lib/libgslcblas.dylib"
@@ -16,7 +17,6 @@ then
     ln -s "$PREFIX/lib/libopenblas.so" "$PREFIX/lib/libgslcblas.so"
     ln -s "$PREFIX/lib/libopenblas.so" "$PREFIX/lib/libgslcblas.so.0"
 fi
-
 
 chmod +x configure
 ./configure --prefix="$PREFIX" --disable-gui --disable-ao
