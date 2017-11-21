@@ -23,7 +23,7 @@ source:
     - patches/macos-ifactor.patch
 
 build:
-  number: 0
+  number: 1
   skip: true  # [win]
   features:
     - blas_{{ variant }}
@@ -41,7 +41,7 @@ requirements:
     - gsl
     - pari
     - blas 1.1 {{ variant }}
-    - openblas 0.2.19|0.2.19.*
+    - openblas 0.2.20|0.2.20.*
 
   run:
     - readline 6.2*
@@ -52,7 +52,7 @@ requirements:
     - gsl
     - pari
     - blas 1.1 {{ variant }}
-    - openblas 0.2.19|0.2.19.*
+    - openblas 0.2.20|0.2.20.*
 
 test:
   commands:
