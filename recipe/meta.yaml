@@ -1,4 +1,4 @@
-{% set version = "1.2.3-25" %}
+{% set version = "1.4.9-57" %}
 {% set name = "giac" %}
 {% set variant = "openblas" %}
 
@@ -9,14 +9,9 @@ package:
 source:
   fn: {{ name }}_{{ version }}.tar.gz
   url: http://www-fourier.ujf-grenoble.fr/~parisse/debian/dists/stable/main/source/{{ name }}_{{ version }}.tar.gz
-  sha256: 8d881c0ea0689195e7f7c3378be35242c86ba592db9b308f53398480ae20ca34
+  sha256: 4d288d49b9f44a6060eb6a7cb6b86debe4ab572d6ff80060ad80ec27a831d162
   patches:
     # Patches taken from github.com/sagemath/sage
-    # giac is compiled without fltk, so some outputs differ in the make check
-    # - patches/nofltk-check.patch
-    # some outputs in the check suite differs when giac is built with pari 2.8 vs 2.7.
-    # (One more keyword and a different ordering in a sum)
-    - patches/cSolveorder-check.patch
     # enable pari factorization in macos. this reverts the disabling in upstream
     # Reason for disabling was an interruptions problem when linking guis with
     # the macos binaries provided by upstream. Can't reproduce
@@ -42,6 +37,7 @@ requirements:
     - pari
     - blas 1.1 {{ variant }}
     - openblas 0.2.20|0.2.20.*
+    - libpng 1.6.*
 
   run:
     - readline 6.2*
@@ -53,6 +49,7 @@ requirements:
     - pari
     - blas 1.1 {{ variant }}
     - openblas 0.2.20|0.2.20.*
+    - libpng 1.6.*
 
 test:
   commands:
@@ -70,3 +67,4 @@ about:
 extra:
   recipe-maintainers:
     - isuruf
+    - saraedum
