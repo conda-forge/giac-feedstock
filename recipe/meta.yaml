@@ -37,7 +37,7 @@ requirements:
     - pari
     - blas 1.1 {{ variant }}
     - openblas 0.2.20|0.2.20.*
-    - libpng
+    - libpng 1.6.*
 
   run:
     - readline 6.2*
@@ -49,7 +49,7 @@ requirements:
     - pari
     - blas 1.1 {{ variant }}
     - openblas 0.2.20|0.2.20.*
-    - libpng
+    - libpng 1.6.*
 
 test:
   commands:
