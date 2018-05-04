@@ -32,7 +32,7 @@ requirements:
     - gmp >=5.0.1,<7
     - mpfr 4.*
     - mpfi
-    - ntl
+    - ntl 10.*
     - gsl
     - pari
     - blas 1.1 {{ variant }}
@@ -44,7 +44,7 @@ requirements:
     - gmp >=5.0.1,<7
     - mpfr 4.*
     - mpfi
-    - ntl
+    - ntl 10.*
     - gsl
     - pari
     - blas 1.1 {{ variant }}
