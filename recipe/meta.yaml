@@ -18,38 +18,44 @@ source:
     - patches/macos-ifactor.patch
 
 build:
-  number: 1
+  number: 2
   skip: true  # [win]
   features:
     - blas_{{ variant }}
 
 requirements:
   build:
-    - toolchain
+    - {{ compiler('cxx') }}
     - libtool
     - automake
+
+  host:
     - readline 6.2*
-    - gmp >=5.0.1,<7
-    - mpfr 3.*
+    - gmp
+    - mpfr
     - mpfi
     - ntl
+    - gf2x
     - gsl
     - pari
     - blas 1.1 {{ variant }}
-    - openblas 0.2.20|0.2.20.*
-    - libpng 1.6.*
+    - openblas
+    - libpng
+    - zlib
 
   run:
-    - readline 6.2*
-    - gmp >=5.0.1,<7
-    - mpfr 3.*
+    - {{ pin_compatible('readline') }}
+    - gmp
+    - mpfr
     - mpfi
     - ntl
-    - gsl
-    - pari
+    - gf2x
+    - {{ pin_compatible('gsl', max_pin='x.x') }}
+    - {{ pin_compatible('pari') }}
     - blas 1.1 {{ variant }}
-    - openblas 0.2.20|0.2.20.*
-    - libpng 1.6.*
+    - openblas
+    - libpng
+    - zlib
 
 test:
   commands:
