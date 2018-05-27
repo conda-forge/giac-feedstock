@@ -25,31 +25,33 @@ build:
 
 requirements:
   build:
-    - toolchain
+    - {{ compiler('cxx') }}
     - libtool
     - automake
+
+  host:
     - readline 6.2*
-    - gmp >=5.0.1,<7
-    - mpfr 4.*
+    - gmp
+    - mpfr
     - mpfi
-    - ntl 10.*
+    - ntl
     - gsl
     - pari
     - blas 1.1 {{ variant }}
-    - openblas 0.2.20|0.2.20.*
-    - libpng 1.6.*
+    - openblas
+    - libpng
 
   run:
-    - readline 6.2*
-    - gmp >=5.0.1,<7
-    - mpfr 4.*
+    - {{ pin_compatible('readline') }}
+    - gmp
+    - mpfr
     - mpfi
-    - ntl 10.*
-    - gsl
-    - pari
+    - ntl
+    - {{ pin_compatible('gsl', max_pin='x.x') }}
+    - {{ pin_compatible('pari') }}
     - blas 1.1 {{ variant }}
-    - openblas 0.2.20|0.2.20.*
-    - libpng 1.6.*
+    - openblas
+    - libpng
 
 test:
   commands:
