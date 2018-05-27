@@ -35,11 +35,13 @@ requirements:
     - mpfr
     - mpfi
     - ntl
+    - gf2x
     - gsl
     - pari
     - blas 1.1 {{ variant }}
     - openblas
     - libpng
+    - zlib
 
   run:
     - {{ pin_compatible('readline') }}
@@ -47,11 +49,13 @@ requirements:
     - mpfr
     - mpfi
     - ntl
+    - gf2x
     - {{ pin_compatible('gsl', max_pin='x.x') }}
     - {{ pin_compatible('pari') }}
     - blas 1.1 {{ variant }}
     - openblas
     - libpng
+    - zlib
 
 test:
   commands:
