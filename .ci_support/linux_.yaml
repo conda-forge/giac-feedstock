@@ -21,3 +21,7 @@ pin_run_as_build:
     max_pin: x
   openblas:
     max_pin: x.x.x
+  zlib:
+    max_pin: x.x
+zlib:
+- '1.2'
