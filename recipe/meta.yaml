@@ -18,7 +18,7 @@ source:
     - patches/macos-ifactor.patch
 
 build:
-  number: 2
+  number: 3
   skip: true  # [win]
   features:
     - blas_{{ variant }}
@@ -30,7 +30,7 @@ requirements:
     - automake
 
   host:
-    - readline 6.2*
+    - readline
     - gmp
     - mpfr
     - mpfi
@@ -44,7 +44,7 @@ requirements:
     - zlib
 
   run:
-    - {{ pin_compatible('readline') }}
+    - readline
     - gmp
     - mpfr
     - mpfi

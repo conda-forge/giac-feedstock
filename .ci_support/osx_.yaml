@@ -27,7 +27,11 @@ pin_run_as_build:
     max_pin: x
   openblas:
     max_pin: x.x.x
+  readline:
+    max_pin: x.x
   zlib:
     max_pin: x.x
+readline:
+- '7.0'
 zlib:
 - '1.2'
