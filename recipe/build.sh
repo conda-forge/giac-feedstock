@@ -1,5 +1,8 @@
 #!/bin/bash
 
+export CFLAGS="-O2 -g $CFLAGS"
+export CXXFLAGS="-O2 -g $CXXFLAGS"
+
 export CXXFLAGS=$(echo "${CXXFLAGS}" | sed "s/-std=c++17/-std=c++11/g")
 export CXXFLAGS=$(echo "${CXXFLAGS}" | sed "s/-std=c++14/-std=c++11/g")
 
