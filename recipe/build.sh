@@ -1,22 +1,15 @@
 #!/bin/bash
 
-export LD_LIBRARY_PATH=$PREFIX/lib:$LD_LIBRARY_PATH
-export LDFLAGS="-L$PREFIX/lib $LDFLAGS"
-export CFLAGS="-O2 -g -I$PREFIX/include $CFLAGS"
-export CXXFLAGS="-O2 -g -I$PREFIX/include $CXXFLAGS"
+export CFLAGS="-O2 -g $CFLAGS"
+export CXXFLAGS="-O2 -g $CXXFLAGS"
 
-mkdir -p gslcblas
-mv "$PREFIX"/lib/libgslcblas.* gslcblas/
+# Need this due to use of register
+export CXXFLAGS=$(echo "${CXXFLAGS}" | sed "s/-std=c++17//g")
+export CXXFLAGS=$(echo "${CXXFLAGS}" | sed "s/-std=c++14//g")
 
-if [ "$(uname)" == "Darwin" ]
-then
-    ln -s "$PREFIX/lib/libopenblas.dylib" "$PREFIX/lib/libgslcblas.dylib"
-    ln -s "$PREFIX/lib/libopenblas.dylib" "$PREFIX/lib/libgslcblas.0.dylib"
-elif [ "$(uname)" == "Linux" ]
-then
-    ln -s "$PREFIX/lib/libopenblas.so" "$PREFIX/lib/libgslcblas.so"
-    ln -s "$PREFIX/lib/libopenblas.so" "$PREFIX/lib/libgslcblas.so.0"
-fi
+# Newer clang doesn't like converting non constant values in initializer lists
+sed -i.bak "s/{order,lexvars}/{(short)order,(unsigned char)lexvars}/g" src/solve.cc
+sed -i.bak "s/{order.val,0}/{(short)order.val,0}/g" src/solve.cc
 
 chmod +x configure
 ./configure --prefix="$PREFIX" --disable-gui --disable-ao
@@ -26,5 +19,3 @@ make -j${CPU_COUNT}
 # Enable patches/nofltk-check.patch as well
 # make check -j${CPU_COUNT}
 make install
-
-mv gslcblas/* "$PREFIX/lib/" 

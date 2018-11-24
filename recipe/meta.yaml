@@ -18,7 +18,7 @@ source:
     - patches/macos-ifactor.patch
 
 build:
-  number: 3
+  number: 1003
   skip: true  # [win]
   features:
     - blas_{{ variant }}
@@ -28,6 +28,7 @@ requirements:
     - {{ compiler('cxx') }}
     - libtool
     - automake
+    - sed
 
   host:
     - readline
@@ -42,6 +43,7 @@ requirements:
     - openblas
     - libpng
     - zlib
+    - gettext   # [osx]
 
   run:
     - readline
@@ -56,6 +58,7 @@ requirements:
     - openblas
     - libpng
     - zlib
+    - gettext   # [osx]
 
 test:
   commands:
