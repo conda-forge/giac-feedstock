@@ -28,6 +28,7 @@ requirements:
     - {{ compiler('cxx') }}
     - libtool
     - automake
+    - sed
 
   host:
     - readline
