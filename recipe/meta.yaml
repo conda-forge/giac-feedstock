@@ -42,6 +42,7 @@ requirements:
     - openblas
     - libpng
     - zlib
+    - gettext   # [osx]
 
   run:
     - readline
@@ -56,6 +57,7 @@ requirements:
     - openblas
     - libpng
     - zlib
+    - gettext   # [osx]
 
 test:
   commands:
