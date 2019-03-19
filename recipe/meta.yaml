@@ -1,6 +1,5 @@
 {% set version = "1.4.9-57" %}
 {% set name = "giac" %}
-{% set variant = "openblas" %}
 
 package:
   name: {{ name }}
@@ -18,10 +17,9 @@ source:
     - patches/macos-ifactor.patch
 
 build:
-  number: 1003
+  number: 1004
   skip: true  # [win]
   features:
-    - blas_{{ variant }}
 
 requirements:
   build:
@@ -31,6 +29,8 @@ requirements:
     - sed
 
   host:
+    - libblas
+    - libcblas
     - readline
     - gmp
     - mpfr
@@ -39,8 +39,6 @@ requirements:
     - gf2x
     - gsl
     - pari
-    - blas 1.1 {{ variant }}
-    - openblas
     - libpng
     - zlib
     - gettext   # [osx]
@@ -54,8 +52,6 @@ requirements:
     - gf2x
     - {{ pin_compatible('gsl', max_pin='x.x') }}
     - {{ pin_compatible('pari') }}
-    - blas 1.1 {{ variant }}
-    - openblas
     - libpng
     - zlib
     - gettext   # [osx]
