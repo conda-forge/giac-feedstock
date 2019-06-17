@@ -8,7 +8,7 @@ package:
 source:
   fn: {{ name }}_{{ version }}.tar.gz
   url: http://www-fourier.ujf-grenoble.fr/~parisse/debian/dists/stable/main/source/{{ name }}_{{ version }}.tar.gz
-  sha256: 427a627df96acbb3adeeff60bdde8f60722e0132275c5220f9d30bcda9f348cf
+  sha256: 780f0b19b1788f487551bbb2c6172df5b5bbece1093e598d1dc1abb1b9aed2b0
   patches:
     # Patches taken from github.com/sagemath/sage
     # enable pari factorization in macos. this reverts the disabling in upstream
