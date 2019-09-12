@@ -1,4 +1,4 @@
-{% set version = "1.5.0-37" %}
+{% set version = "1.5.0-63" %}
 {% set name = "giac" %}
 
 package:
@@ -8,7 +8,7 @@ package:
 source:
   fn: {{ name }}_{{ version }}.tar.gz
   url: http://www-fourier.ujf-grenoble.fr/~parisse/debian/dists/stable/main/source/{{ name }}_{{ version }}.tar.gz
-  sha256: 780f0b19b1788f487551bbb2c6172df5b5bbece1093e598d1dc1abb1b9aed2b0
+  sha256: 1373eae7850cd40a7005aef534fd84dd05bc5a435f0064a1331c49743d57e7ca
   patches:
     # Patches taken from github.com/sagemath/sage
     # enable pari factorization in macos. this reverts the disabling in upstream
