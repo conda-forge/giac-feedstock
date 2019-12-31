@@ -12,7 +12,7 @@ sed -i.bak "s/{order,lexvars}/{(short)order,(unsigned char)lexvars}/g" src/solve
 sed -i.bak "s/{order.val,0}/{(short)order.val,0}/g" src/solve.cc
 
 chmod +x configure
-./configure --prefix="$PREFIX" --disable-gui --disable-ao
+./configure --prefix="$PREFIX" --disable-gui --disable-ao --disable-static
 
 make -j${CPU_COUNT}
 # Enable the following once https://github.com/conda/conda-build/issues/1797 is fixed.
