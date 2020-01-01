@@ -41,6 +41,7 @@ requirements:
     - libpng
     - zlib
     - gettext   # [osx]
+    - ncurses
   run:
     - readline
     - gmp
