@@ -15,6 +15,10 @@ if [[ "$CI" == "travis" ]]; then
   export CPU_COUNT=4
 fi
 
+# Delete libgfortran.so so that giac doesn't link to it.
+find $PREFIX -name libgfortran${SHLIB_EXT} -delete
+find $BUILD_PREFIX -name libgfortran${SHLIB_EXT} -delete
+
 chmod +x configure
 ./configure --prefix="$PREFIX" --disable-gui --disable-ao --disable-static
 
