@@ -11,6 +11,10 @@ export CXXFLAGS=$(echo "${CXXFLAGS}" | sed "s/-std=c++14//g")
 sed -i.bak "s/{order,lexvars}/{(short)order,(unsigned char)lexvars}/g" src/solve.cc
 sed -i.bak "s/{order.val,0}/{(short)order.val,0}/g" src/solve.cc
 
+if [[ "$CI" == "travis" ]]; then
+  export CPU_COUNT=4
+fi
+
 chmod +x configure
 ./configure --prefix="$PREFIX" --disable-gui --disable-ao --disable-static
 
