@@ -59,6 +59,7 @@ requirements:
     - libpng
     - zlib
     - gettext   # [osx]
+    - ncurses
     - {{ pin_compatible('ecm') }}
     - {{ pin_compatible('glpk') }}
     - {{ pin_compatible('nauty', max_pin='x.x') }}
