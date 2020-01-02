@@ -17,7 +17,7 @@ source:
     - patches/macos-ifactor.patch
 
 build:
-  number: 3
+  number: 4
   skip: true  # [win]
 
 requirements:
@@ -30,6 +30,7 @@ requirements:
   host:
     - libblas
     - libcblas
+    - liblapack
     - readline
     - gmp
     - mpfr
@@ -42,6 +43,10 @@ requirements:
     - zlib
     - gettext   # [osx]
     - ncurses
+    - ecm
+    - glpk
+    - libcurl
+    - nauty
   run:
     - readline
     - gmp
@@ -54,6 +59,9 @@ requirements:
     - libpng
     - zlib
     - gettext   # [osx]
+    - {{ pin_compatible('ecm') }}
+    - {{ pin_compatible('glpk') }}
+    - {{ pin_compatible('nauty', max_pin='x.x') }}
 
 test:
   commands:
