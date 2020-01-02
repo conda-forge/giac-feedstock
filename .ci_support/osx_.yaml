@@ -7,7 +7,7 @@ channel_targets:
 cxx_compiler:
 - clangxx
 cxx_compiler_version:
-- '4'
+- '9'
 gf2x:
 - '1.2'
 gmp:
@@ -19,7 +19,7 @@ libblas:
 libcblas:
 - 3.8 *netlib
 libpng:
-- 1.6.35
+- '1.6'
 macos_machine:
 - x86_64-apple-darwin13.4.0
 macos_min_version:
