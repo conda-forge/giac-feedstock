@@ -72,7 +72,7 @@ test:
 
 about:
   home: http://www-fourier.ujf-grenoble.fr/~parisse/giac.html
-  license: GPL v3+
+  license: GPL-3.0-or-later
   license_file: COPYING
   summary: Giac/Xcas is a free computer algebra system
 
