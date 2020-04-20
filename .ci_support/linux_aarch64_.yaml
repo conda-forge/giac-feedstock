@@ -5,7 +5,7 @@ cdt_arch:
 cdt_name:
 - cos7
 channel_sources:
-- conda-forge,c4aarch64,defaults
+- conda-forge
 channel_targets:
 - conda-forge main
 cxx_compiler:
@@ -27,7 +27,7 @@ libblas:
 libcblas:
 - 3.8 *netlib
 libcurl:
-- '7.64'
+- '7'
 liblapack:
 - 3.8.0 *netlib
 libpng:
@@ -37,7 +37,7 @@ mpfr:
 ncurses:
 - '6.1'
 ntl:
-- 11.3.2
+- 11.4.3
 pari:
 - '2.11'
 pin_run_as_build:
