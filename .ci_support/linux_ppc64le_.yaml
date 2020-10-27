@@ -1,3 +1,5 @@
+cdt_name:
+- cos7
 channel_sources:
 - conda-forge,defaults
 channel_targets:
@@ -23,13 +25,13 @@ libcblas:
 libcurl:
 - '7'
 liblapack:
-- 3.8.0 *netlib
+- 3.8 *netlib
 libpng:
 - '1.6'
 mpfr:
 - '4'
 ncurses:
-- '6.1'
+- '6.2'
 ntl:
 - 11.4.3
 pari:
@@ -53,5 +55,7 @@ pin_run_as_build:
     max_pin: x.x
 readline:
 - '8.0'
+target_platform:
+- linux-ppc64le
 zlib:
 - '1.2'
