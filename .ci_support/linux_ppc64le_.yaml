@@ -7,9 +7,9 @@ channel_targets:
 cxx_compiler:
 - gxx
 cxx_compiler_version:
-- '8'
+- '9'
 docker_image:
-- condaforge/linux-anvil-ppc64le
+- quay.io/condaforge/linux-anvil-ppc64le
 gf2x:
 - '1.3'
 glpk:
@@ -54,7 +54,7 @@ pin_run_as_build:
   zlib:
     max_pin: x.x
 readline:
-- '8.0'
+- '8'
 target_platform:
 - linux-ppc64le
 zlib:
