@@ -28,6 +28,8 @@ requirements:
     - automake
     - sed
     - make
+    - flex
+    - bison
   host:
     - libblas
     - libcblas

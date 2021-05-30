@@ -3,6 +3,12 @@
 cp $BUILD_PREFIX/share/gnuconfig/config.* .
 cp $BUILD_PREFIX/share/gnuconfig/config.* ./config
 
+# purge micropython as it leads to compiler errors
+rm -rf micropython-1.12
+sed -i.bak '/^micropython-1.12/d' configure.ac
+sed -i.bak 's/micropython-1.12//g' Makefile.in
+autoreconf -vfi
+
 export CFLAGS="-O2 -g $CFLAGS"
 export CXXFLAGS="-O2 -g $CXXFLAGS"
 
