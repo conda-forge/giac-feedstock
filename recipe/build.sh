@@ -18,6 +18,9 @@ if [[ "$CI" == "travis" ]]; then
   export CPU_COUNT=4
 fi
 
+# Needs to use `gcc -E` instead of `cpp`
+unset CPP
+
 # Delete libgfortran.so so that giac doesn't link to it.
 find $PREFIX -name libgfortran${SHLIB_EXT} -delete
 find $BUILD_PREFIX -name libgfortran${SHLIB_EXT} -delete
