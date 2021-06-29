@@ -35,7 +35,7 @@ ncurses:
 ntl:
 - 11.4.3
 pari:
-- '2.11'
+- '2.13'
 pin_run_as_build:
   glpk:
     max_pin: x.x
