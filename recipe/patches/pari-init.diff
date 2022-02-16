@@ -1,0 +1,15 @@
+--- src/pari.cc.old     2021-06-08 19:42:55.662494804 -0700
++++ src/pari.cc 2021-06-08 19:43:41.046964483 -0700
+@@ -97,8 +97,10 @@
+   static void call_pari_init()
+   {
+     // do not initialize INIT_JMP so that PARI error do not exit
+-    pari_init_opts(pari_mem_size,pari_maxprime,INIT_SIGm | INIT_DFTm);
+-    paristack_setsize(pari_mem_size, (1<<30));
++    if (pari_mainstack == NULL) {
++      pari_init_opts(pari_mem_size,pari_maxprime,INIT_SIGm | INIT_DFTm);
++      paristack_setsize(pari_mem_size, (1<<30));
++    }
+     // initialize variable ordering x,y,z
+     gp_read_str("[x,y,z,t]");
+   }

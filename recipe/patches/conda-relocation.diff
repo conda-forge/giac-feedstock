@@ -1,0 +1,37 @@
+--- src/global.cc       2022-02-16 12:00:39.211579013 -0800
++++ src/global.cc       2022-02-16 12:04:33.986095980 -0800
+@@ -94,6 +94,11 @@
+ #include <stdio.h>
+ #include <stdarg.h>
+ 
++#if defined(__APPLE__)
++#define _DARWIN_C_SOURCE
++#endif
++#include <dlfcn.h>
++
+ #ifdef HAVE_LIBMICROPYTHON
+ std::string python_console;
+ #endif
+@@ -2793,7 +2798,20 @@
+       }
+ #endif // GNUWINCE
+ #else
+-      s=giac_aide_location;
++      Dl_info info;
++      if (dladdr((void*)protected_read_config, &info)) {
++        char const * soname = info.dli_fname;
++        s = string(soname);
++        size_t last_slash = s.rfind('/');
++        s = s.substr(0, last_slash+1);
++        if (s.size() > 0) {
++          s += "../share/giac/aide_cas";
++        } else {
++          s=giac_aide_location;
++        }
++      } else {
++        s=giac_aide_location;
++      }
+       s=s.substr(0,s.size()-8);
+ #endif
+       if (s.size())
+
