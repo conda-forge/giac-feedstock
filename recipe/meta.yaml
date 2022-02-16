@@ -15,9 +15,10 @@ source:
     # Reason for disabling was an interruptions problem when linking guis with
     # the macos binaries provided by upstream. Can't reproduce
     - patches/macos-ifactor.patch
+    - patches/conda-relocation.diff
 
 build:
-  number: 3
+  number: 4
   skip: true  # [win]
 
 requirements:
@@ -72,6 +73,7 @@ test:
     - test -f ${PREFIX}/include/{{ name }}/{{ name }}.h
     - test -f ${PREFIX}/lib/lib{{ name }}.dylib  # [osx]
     - test -f ${PREFIX}/lib/lib{{ name }}.so     # [linux]
+    - giac 1
 
 about:
   home: http://www-fourier.ujf-grenoble.fr/~parisse/giac.html
