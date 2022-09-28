@@ -1,4 +1,4 @@
-{% set version = "1.4.9-57" %}
+{% set version = "1.9.0-21" %}
 {% set name = "giac" %}
 {% set variant = "openblas" %}
 
@@ -18,7 +18,7 @@ source:
     - patches/macos-ifactor.patch
 
 build:
-  number: 3
+  number: 0
   skip: true  # [win]
   features:
     - blas_{{ variant }}
