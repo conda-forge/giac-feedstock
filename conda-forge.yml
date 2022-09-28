@@ -1,6 +1,12 @@
-travis:
-  secure:
-    BINSTAR_TOKEN: aLVsmgStAYC5icIj3MkD+Qqir1OAzi23tOW8DngINdeQuueAzwqi8Z5JOoRsSczqtStnxnD9PrlCV9MvYIry4u5yyyP88KHyMwvw3W/UxqdeKjhwKoImDIySJsaR4N8nUiCMQwfBomWc4z0dRX8d5Wv0cAXrefzRh6JA5TlHs2XAqzbeippzwrK4MXAlCxH0NH73e4eUZd1VUhdXCiGarELbXhVfDc4xzvuBmAlWHsd5y6iT9r6kbVald4/t1UfrtUuJPwMEmybXMbSaQOSBNfzC3xV8Uj56fohWU5dikce0akymDNajfbmVMlqAx83Dy9nOWXFqTDyo4+yJWkAp9IbdW7XK0atzvrlyfqfpE/UmjNKjIHRICn0eF5bcNT7MVrLHEtsGKxq6qglwGbq2vBqYl5kAFtCamuCnYvyYzWUd7pdLGBp47fYoTfVAQVjAQ5yWupdnf7LiN+FFeUPUaSd34cbi4ibZmbqsoWQ8p5VU26+D2ZGK0Y6pskECU5VSKF6tZJWRu67veIcVK6sJVMgPd+x+SuBfZYeqK9w0fqowCOitfmPlnnJkh1LEwfoMLSFy9pquibs+MK91a1HxWTRxi+THdh4qtp0FSUEJSN3fDG80fgdbtUeGroSOoONf3jWelo1O/DyZsAwByDGygUCLOgzPlhHlBfrPqg7J27o=
-appveyor:
-  secure:
-    BINSTAR_TOKEN: ipv/06DzgA7pzz2CIAtbPxZSsphDtF+JFyoWRnXkn3O8j7oRe3rzqj3LOoq2DZp4
+build_platform:
+  linux_aarch64: linux_64
+  linux_ppc64le: linux_64
+  osx_arm64: osx_64
+conda_forge_output_validation: true
+github:
+  branch_name: main
+  tooling_branch_name: main
+provider:
+  linux_aarch64: default
+  linux_ppc64le: default
+test_on_native_only: true

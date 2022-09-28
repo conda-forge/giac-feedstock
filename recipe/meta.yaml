@@ -1,6 +1,5 @@
 {% set version = "1.9.0-21" %}
 {% set name = "giac" %}
-{% set variant = "openblas" %}
 
 package:
   name: {{ name }}
@@ -9,27 +8,33 @@ package:
 source:
   fn: {{ name }}_{{ version }}.tar.gz
   url: http://www-fourier.ujf-grenoble.fr/~parisse/debian/dists/stable/main/source/{{ name }}_{{ version }}.tar.gz
-  sha256: 4d288d49b9f44a6060eb6a7cb6b86debe4ab572d6ff80060ad80ec27a831d162
+  sha256: 73903dfc8e8bfe8dd8dddc443e84caa70fdf26a60cafa7ae2e575a4351d64f97
   patches:
     # Patches taken from github.com/sagemath/sage
     # enable pari factorization in macos. this reverts the disabling in upstream
     # Reason for disabling was an interruptions problem when linking guis with
     # the macos binaries provided by upstream. Can't reproduce
     - patches/macos-ifactor.patch
+    - patches/conda-relocation.diff
 
 build:
   number: 0
   skip: true  # [win]
-  features:
-    - blas_{{ variant }}
 
 requirements:
   build:
+    - gnuconfig  # [unix]
     - {{ compiler('cxx') }}
     - libtool
     - automake
-
+    - sed
+    - make
+    - flex
+    - bison
   host:
+    - libblas
+    - libcblas
+    - liblapack
     - readline
     - gmp
     - mpfr
@@ -38,11 +43,14 @@ requirements:
     - gf2x
     - gsl
     - pari
-    - blas 1.1 {{ variant }}
-    - openblas
     - libpng
     - zlib
-
+    - gettext   # [osx]
+    - ncurses
+    - ecm
+    - glpk
+    - libcurl
+    - nauty
   run:
     - readline
     - gmp
@@ -52,21 +60,24 @@ requirements:
     - gf2x
     - {{ pin_compatible('gsl', max_pin='x.x') }}
     - {{ pin_compatible('pari') }}
-    - blas 1.1 {{ variant }}
-    - openblas
     - libpng
     - zlib
+    - gettext   # [osx]
+    - ncurses
+    - {{ pin_compatible('ecm') }}
+    - {{ pin_compatible('glpk') }}
+    - {{ pin_compatible('nauty', max_pin='x') }}
 
 test:
   commands:
     - test -f ${PREFIX}/include/{{ name }}/{{ name }}.h
-    - test -f ${PREFIX}/lib/lib{{ name }}.a
     - test -f ${PREFIX}/lib/lib{{ name }}.dylib  # [osx]
     - test -f ${PREFIX}/lib/lib{{ name }}.so     # [linux]
+    - giac 1
 
 about:
   home: http://www-fourier.ujf-grenoble.fr/~parisse/giac.html
-  license: GPL v3+
+  license: GPL-3.0-or-later
   license_file: COPYING
   summary: Giac/Xcas is a free computer algebra system
 
