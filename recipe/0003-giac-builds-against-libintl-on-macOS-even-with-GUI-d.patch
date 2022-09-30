@@ -1,0 +1,26 @@
+From c25566fba0a2d1d652a70ca98b6863d349d4d46f Mon Sep 17 00:00:00 2001
+From: =?UTF-8?q?Julian=20R=C3=BCth?= <julian.rueth@fsfe.org>
+Date: Fri, 30 Sep 2022 17:58:55 +0200
+Subject: [PATCH] giac builds against libintl on macOS even with GUI disabled
+
+---
+ configure.ac | 3 +++
+ 1 file changed, 3 insertions(+)
+
+diff --git a/configure.ac b/configure.ac
+index 64042b7..0ccc6a8 100644
+--- a/configure.ac
++++ b/configure.ac
+@@ -380,6 +380,9 @@ AC_CANONICAL_HOST
+ dnl Check for stuff needed for building the Giac interactive shell (cas).
+ GINAC_READLINE
+ 
++# Link with libintl on macOS to resolve gettext symbols.
++AC_CHECK_LIB(intl, main)
++
+ dnl Ugh...
+ CONFIG_GUI="yes"
+ AC_ARG_ENABLE([gui],
+-- 
+2.37.3
+
