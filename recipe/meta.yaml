@@ -32,6 +32,7 @@ requirements:
     - flex
     - bison
   host:
+    - fltk
     - libblas
     - libcblas
     - liblapack
