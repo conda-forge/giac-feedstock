@@ -10,6 +10,8 @@ sed -i.bak 's/micropython-1.12//g' Makefile.am
 autoreconf -vfi
 
 export CFLAGS="-O2 -g $CFLAGS"
+# giac needs clock_gettime()
+export CFLAGS="-std=gnu99 $CFLAGS"
 export CXXFLAGS="-O2 -g $CXXFLAGS"
 
 # Need this due to use of register
