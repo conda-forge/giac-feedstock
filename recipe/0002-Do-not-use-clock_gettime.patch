@@ -1,0 +1,26 @@
+From 6c780e780d397afa6d059aa25a37c0eedbc733eb Mon Sep 17 00:00:00 2001
+From: =?UTF-8?q?Julian=20R=C3=BCth?= <julian.rueth@fsfe.org>
+Date: Fri, 30 Sep 2022 17:23:20 +0200
+Subject: [PATCH] Do not use clock_gettime
+
+not available on old versions of macOS
+---
+ src/quickjs-libc.c | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/src/quickjs-libc.c b/src/quickjs-libc.c
+index 9131074..c19a67e 100644
+--- a/src/quickjs-libc.c
++++ b/src/quickjs-libc.c
+@@ -2019,7 +2019,7 @@ static JSValue js_os_signal(JSContext *ctx, JSValueConst this_val,
+ #endif
+ }
+ 
+-#if defined(__linux__) || defined(__APPLE__)
++#if defined(__linux__)
+ static int64_t get_time_ms(void)
+ {
+     struct timespec ts;
+-- 
+2.37.3
+

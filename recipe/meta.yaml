@@ -11,6 +11,7 @@ source:
   sha256: 120cd16f2e033817302d2a03a22bd413dc1d85df8b225ba4f76b93a7805b07fe
   patches:
     - 0001-Fix-compilation-without-GUI.patch
+    - 0002-Do-not-use-clock_gettime.patch
     # Patches taken from github.com/sagemath/sage
     # enable pari factorization in macos. this reverts the disabling in upstream
     # Reason for disabling was an interruptions problem when linking guis with
