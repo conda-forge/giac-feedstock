@@ -36,21 +36,6 @@ ntl:
 - 11.4.3
 pari:
 - 2.13.* *_pthread
-pin_run_as_build:
-  glpk:
-    max_pin: x.x
-  gmp:
-    max_pin: x
-  libcurl:
-    max_pin: x
-  libpng:
-    max_pin: x.x
-  mpfr:
-    max_pin: x
-  readline:
-    max_pin: x
-  zlib:
-    max_pin: x.x
 readline:
 - '8'
 target_platform:

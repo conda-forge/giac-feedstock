@@ -1,4 +1,4 @@
-{% set version = "1.6.0-47" %}
+{% set version = "1.9.0-21" %}
 {% set name = "giac" %}
 
 package:
@@ -8,8 +8,11 @@ package:
 source:
   fn: {{ name }}_{{ version }}.tar.gz
   url: http://www-fourier.ujf-grenoble.fr/~parisse/debian/dists/stable/main/source/{{ name }}_{{ version }}.tar.gz
-  sha256: 73903dfc8e8bfe8dd8dddc443e84caa70fdf26a60cafa7ae2e575a4351d64f97
+  sha256: 120cd16f2e033817302d2a03a22bd413dc1d85df8b225ba4f76b93a7805b07fe
   patches:
+    - 0001-Fix-compilation-without-GUI.patch
+    - 0002-Do-not-use-clock_gettime.patch
+    - 0003-giac-builds-against-libintl-on-macOS-even-with-GUI-d.patch
     # Patches taken from github.com/sagemath/sage
     # enable pari factorization in macos. this reverts the disabling in upstream
     # Reason for disabling was an interruptions problem when linking guis with
@@ -18,7 +21,7 @@ source:
     - patches/conda-relocation.diff
 
 build:
-  number: 6
+  number: 0
   skip: true  # [win]
 
 requirements:
