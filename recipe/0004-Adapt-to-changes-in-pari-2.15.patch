@@ -1,0 +1,45 @@
+From 640727b4330b993b25dd18ead5c5dae6b9b7f073 Mon Sep 17 00:00:00 2001
+From: =?UTF-8?q?Julian=20R=C3=BCth?= <julian.rueth@fsfe.org>
+Date: Thu, 16 Feb 2023 15:11:19 +0100
+Subject: [PATCH] Adapt to changes in pari 2.15
+
+ANYARG is not defined anymore by PARI
+---
+ src/pari.cc | 8 ++++----
+ 1 file changed, 4 insertions(+), 4 deletions(-)
+
+diff --git a/src/pari.cc b/src/pari.cc
+index 76ce8e1..8249012 100644
+--- a/src/pari.cc
++++ b/src/pari.cc
+@@ -749,7 +749,7 @@ namespace giac {
+     RET_INT=2,
+     RET_LONG=3
+   };
+-  typedef GEN (*PFGEN)(ANYARG);
++  typedef GEN (*PFGEN)(...);
+ 
+   extern const unary_function_ptr * const  at_pari;
+   static gen in_pari(const gen & args,GIAC_CONTEXT){
+@@ -884,15 +884,15 @@ namespace giac {
+ 	      break;
+ 
+ 	    case RET_INT:
+-	      m = (long)((int (*)(ANYARG))call)(_ARGS_);
++	      m = (long)((int (*)(...))call)(_ARGS_);
+ 	      res = stoi(m); break;
+ 
+ 	    case RET_LONG:
+-	      m = ((long (*)(ANYARG))call)(_ARGS_);
++	      m = ((long (*)(...))call)(_ARGS_);
+ 	      res = stoi(m); break;
+ 
+ 	    case RET_VOID:
+-	      ((void (*)(ANYARG))call)(_ARGS_);
++	      ((void (*)(...))call)(_ARGS_);
+ 	      res = gnil; break;
+ 	    }
+ 
+-- 
+2.39.1
+

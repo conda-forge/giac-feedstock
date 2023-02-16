@@ -15,6 +15,7 @@ export CXXFLAGS="-O2 -g $CXXFLAGS"
 # Need this due to use of register
 export CXXFLAGS=$(echo "${CXXFLAGS}" | sed "s/-std=c++17//g")
 export CXXFLAGS=$(echo "${CXXFLAGS}" | sed "s/-std=c++14//g")
+export CXXFLAGS="$CXXFLAGS -std=c++11"
 
 # Newer clang doesn't like converting non constant values in initializer lists
 sed -i.bak "s/{order,lexvars}/{(short)order,(unsigned char)lexvars}/g" src/solve.cc
