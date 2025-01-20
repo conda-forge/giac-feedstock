@@ -32,7 +32,8 @@ requirements:
     - {{ stdlib("c") }}
     - libtool
     - automake
-    - gettext
+    - gettext-tools
+    - xz-tools
     - sed
     - make
     - flex
