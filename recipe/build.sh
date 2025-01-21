@@ -21,8 +21,8 @@ export CXXFLAGS="$CXXFLAGS -std=c++11"
 sed -i.bak "s/{order,lexvars}/{(short)order,(unsigned char)lexvars}/g" src/solve.cc
 sed -i.bak "s/{order.val,0}/{(short)order.val,0}/g" src/solve.cc
 
-if [[ "$CI" == "travis" ]]; then
-  export CPU_COUNT=4
+if [[ "$target_platform" == "osx-"* ]]; then
+  export CFLAGS="$CFLAGS -Wno-implicit-function-declaration"
 fi
 
 # Needs to use `gcc -E` instead of `cpp`
