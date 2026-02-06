@@ -1,7 +1,8 @@
-From c25566fba0a2d1d652a70ca98b6863d349d4d46f Mon Sep 17 00:00:00 2001
+From dabff8db07b371e2ae35de8ebfe06f5d2d0dda40 Mon Sep 17 00:00:00 2001
 From: =?UTF-8?q?Julian=20R=C3=BCth?= <julian.rueth@fsfe.org>
 Date: Fri, 30 Sep 2022 17:58:55 +0200
-Subject: [PATCH] giac builds against libintl on macOS even with GUI disabled
+Subject: [PATCH 3/6] giac builds against libintl on macOS even with GUI
+ disabled
 
 ---
  configure.ac | 3 +++
@@ -22,5 +23,5 @@ index 64042b7..0ccc6a8 100644
  CONFIG_GUI="yes"
  AC_ARG_ENABLE([gui],
 -- 
-2.37.3
+2.52.0
 

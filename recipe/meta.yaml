@@ -14,12 +14,8 @@ source:
     - 0002-Do-not-use-clock_gettime.patch
     - 0003-giac-builds-against-libintl-on-macOS-even-with-GUI-d.patch
     - 0004-Adapt-to-changes-in-pari-2.15.patch
-    # Patches taken from github.com/sagemath/sage
-    # enable pari factorization in macos. this reverts the disabling in upstream
-    # Reason for disabling was an interruptions problem when linking guis with
-    # the macos binaries provided by upstream. Can't reproduce
-    - 0005-macos-ifactor.patch
-    - 0006-conda-relocation.diff
+    - 0005-Add-macos-ifactor.patch-from-SageMath.patch
+    - 0006-Fix-conda-relocation.patch
 
 build:
   number: 4
