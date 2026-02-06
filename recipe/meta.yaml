@@ -14,7 +14,7 @@ source:
     - 0002-Do-not-use-clock_gettime.patch
     - 0003-giac-builds-against-libintl-on-macOS-even-with-GUI-d.patch
     - 0004-Adapt-to-changes-in-pari-2.15.patch
-    - 0005-Add-macos-ifactor.patch-from-SageMath.patch
+    - 0005-Enable-pari-factorization-in-macOS.patch
     - 0006-Fix-conda-relocation.patch
 
 build:
