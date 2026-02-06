@@ -18,8 +18,8 @@ source:
     # enable pari factorization in macos. this reverts the disabling in upstream
     # Reason for disabling was an interruptions problem when linking guis with
     # the macos binaries provided by upstream. Can't reproduce
-    - patches/macos-ifactor.patch
-    - patches/conda-relocation.diff
+    - 0005-macos-ifactor.patch
+    - 0006-conda-relocation.diff
 
 build:
   number: 4
