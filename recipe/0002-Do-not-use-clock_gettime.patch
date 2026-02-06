@@ -1,7 +1,7 @@
 From 7f1cd2ad26413a76930acc4fdf153fe6ad11eab1 Mon Sep 17 00:00:00 2001
 From: =?UTF-8?q?Julian=20R=C3=BCth?= <julian.rueth@fsfe.org>
 Date: Fri, 30 Sep 2022 17:23:20 +0200
-Subject: [PATCH 2/6] Do not use clock_gettime
+Subject: [PATCH 2/7] Do not use clock_gettime
 
 not available on old versions of macOS
 ---

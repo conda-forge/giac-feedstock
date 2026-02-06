@@ -1,7 +1,7 @@
 From 5dd979170b5adb0526225cef6c03f2cc4c92d66f Mon Sep 17 00:00:00 2001
 From: =?UTF-8?q?Julian=20R=C3=BCth?= <julian.rueth@fsfe.org>
 Date: Fri, 6 Feb 2026 11:21:07 +0100
-Subject: [PATCH 5/6] Enable pari factorization in macOS
+Subject: [PATCH 5/7] Enable pari factorization in macOS
 
 Patch from github.com/sagemath/sage.
 This reverts the disabling in upstream.

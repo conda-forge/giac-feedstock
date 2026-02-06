@@ -16,6 +16,7 @@ source:
     - 0004-Adapt-to-changes-in-pari-2.15.patch
     - 0005-Enable-pari-factorization-in-macOS.patch
     - 0006-Fix-conda-relocation.patch
+    - 0007-Do-not-ship-fenv.h-header.patch
 
 build:
   number: 4

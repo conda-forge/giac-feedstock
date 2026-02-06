@@ -1,7 +1,7 @@
 From c56b5816ec11fa1025e7af61e97de4c497c105b1 Mon Sep 17 00:00:00 2001
 From: =?UTF-8?q?Julian=20R=C3=BCth?= <julian.rueth@fsfe.org>
 Date: Thu, 16 Feb 2023 15:11:19 +0100
-Subject: [PATCH 4/6] Adapt to changes in pari 2.15
+Subject: [PATCH 4/7] Adapt to changes in pari 2.15
 
 ANYARG is not defined anymore by PARI
 ---

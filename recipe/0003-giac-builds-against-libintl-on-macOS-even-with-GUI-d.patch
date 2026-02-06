@@ -1,7 +1,7 @@
 From dabff8db07b371e2ae35de8ebfe06f5d2d0dda40 Mon Sep 17 00:00:00 2001
 From: =?UTF-8?q?Julian=20R=C3=BCth?= <julian.rueth@fsfe.org>
 Date: Fri, 30 Sep 2022 17:58:55 +0200
-Subject: [PATCH 3/6] giac builds against libintl on macOS even with GUI
+Subject: [PATCH 3/7] giac builds against libintl on macOS even with GUI
  disabled
 
 ---
