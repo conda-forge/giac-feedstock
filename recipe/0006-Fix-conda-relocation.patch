@@ -1,5 +1,5 @@
 From 5dd626741251eb9e9d8817269f9dd36ae0e0b57a Mon Sep 17 00:00:00 2001
-From: =?UTF-8?q?Julian=20R=C3=BCth?= <julian.rueth@fsfe.org>
+From: Isuru Fernando <isuruf@gmail.com>
 Date: Fri, 6 Feb 2026 11:23:24 +0100
 Subject: [PATCH 6/7] Fix conda relocation
 
