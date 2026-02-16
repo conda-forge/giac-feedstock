@@ -10,11 +10,9 @@ source:
   url: https://github.com/cxzhong/giac-feedstock/releases/download/v{{ version }}/{{ name }}_{{ version }}.tar.gz
   sha256: edfb8a57cc4d943c8df616b5f8d34752314f8443f4359ded8704572f591c0391
   patches:
-    - 0002-Do-not-use-clock_gettime.patch
     - 0003-giac-builds-against-libintl-on-macOS-even-with-GUI-d.patch
     - 0005-Enable-pari-factorization-in-macOS.patch
     - 0006-Fix-conda-relocation.patch
-    - 0007-Do-not-ship-fenv.h-header.patch
 
 build:
   number: 0
