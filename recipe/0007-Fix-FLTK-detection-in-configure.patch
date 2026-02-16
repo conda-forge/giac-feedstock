@@ -1,0 +1,54 @@
+From 0000000000000000000000000000000000000000 Mon Sep 17 00:00:00 2001
+From: conda-forge <conda-forge@users.noreply.github.com>
+Date: Sun, 16 Feb 2026 00:00:00 +0000
+Subject: [PATCH] Fix FLTK detection in configure.ac
+
+AC_CHECK_LIB(fltk, main) does not set a shell variable $HAVE_LIBFLTK;
+it only defines the C preprocessor macro HAVE_LIBFLTK and adds -lfltk
+to LIBS. The shell variable set by autoconf is $ac_cv_lib_fltk_main.
+The same applies to $HAVE_LIBFLTK_GL / $ac_cv_lib_fltk_gl_main.
+
+Without this fix, the HAVE_LIBFLVW define is never set, which means the
+FLTK widget integration code is not compiled even when libfltk is found.
+This causes FL_BLACK to be 0 instead of 56, breaking test expectations.
+
+---
+ configure.ac | 8 ++++----
+ 1 file changed, 4 insertions(+), 4 deletions(-)
+
+diff --git a/configure.ac b/configure.ac
+index 1111111..2222222 100644
+--- a/configure.ac
++++ b/configure.ac
+@@ -411,11 +411,11 @@
+ 		AC_CHECK_LIB(jpeg, main)
+ 		AC_CHECK_LIB(fltk_jpeg, main)
+ 		AC_CHECK_LIB(fltk_images, main)
+-		if test "$HAVE_LIBFLTK" = "1" ; then
++		if test "x$ac_cv_lib_fltk_main" = "xyes" ; then
+ 			AC_DEFINE([HAVE_LIBFLVW],1,[Now defined if fltk is available])
+ 		fi
+ 		LIBS="$LIBS -mwindows -lole32 -luuid -lcomctl32 -lwsock32"
+-		if test "$HAVE_LIBFLTK_GL" = "1" ; then
++		if test "x$ac_cv_lib_fltk_gl_main" = "xyes" ; then
+ 		    AC_DEFINE([USE_OPENGL32],1,[Defined if fltk has OpenGL enabled])
+ 		    LIBS="$LIBS -lglu32 -lopengl32 -lfltk_png"
+ 		fi
+@@ -431,7 +431,7 @@
+ 		LIBS="$LIBS -lopengl32"
+ 		AC_CHECK_LIB(fltk_gl, main)
+ 		AC_CHECK_LIB(fltk, main)
+-		if test "$HAVE_LIBFLTK_GL" = "1" ; then
++		if test "x$ac_cv_lib_fltk_gl_main" = "xyes" ; then
+ 		    AC_DEFINE([USE_OPENGL32],1,[Defined if fltk has OpenGL enabled])
+ 		fi		
+ 		AC_CHECK_LIB(z, main)
+@@ -463,7 +463,7 @@
+ 	   AC_CHECK_LIB(Xrender, main)
+ 	   AC_CHECK_LIB(fltk_gl, main)
+ 	   AC_CHECK_LIB(fltk, main)
+-	   if test "$HAVE_LIBFLTK" = "1"; then
++	   if test "x$ac_cv_lib_fltk_main" = "xyes"; then
+ 	      AC_DEFINE([HAVE_LIBFLVW],1, [Now defined if fltk is available])
+ 	      fi
+ 	      AC_CHECK_LIB(z,main)

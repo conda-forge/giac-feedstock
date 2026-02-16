@@ -13,6 +13,7 @@ source:
     - 0003-giac-builds-against-libintl-on-macOS-even-with-GUI-d.patch
     - 0005-Enable-pari-factorization-in-macOS.patch
     - 0006-Fix-conda-relocation.patch
+    - 0007-Fix-FLTK-detection-in-configure.patch  # [linux]
 
 build:
   number: 0
@@ -51,6 +52,17 @@ requirements:
     - glpk
     - libcurl
     - nauty
+    - fltk              # [linux]
+    - libglu             # [linux]
+    - xorg-libx11        # [linux]
+    - xorg-libxcursor    # [linux]
+    - xorg-libxext       # [linux]
+    - xorg-libxfixes     # [linux]
+    - xorg-libxft        # [linux]
+    - xorg-libxinerama   # [linux]
+    - xorg-libxrender    # [linux]
+    - xorg-xproto        # [linux]
+    - fontconfig         # [linux]
   run:
     - readline
     - gmp
@@ -67,6 +79,7 @@ requirements:
     - {{ pin_compatible('ecm') }}
     - {{ pin_compatible('glpk') }}
     - {{ pin_compatible('nauty', max_pin='x') }}
+    - fltk              # [linux]
 
 test:
   commands:
