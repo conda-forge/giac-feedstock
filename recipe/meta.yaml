@@ -1,4 +1,4 @@
-{% set version = "1.9.0-21" %}
+{% set version = "2.0.0-19" %}
 {% set name = "giac" %}
 
 package:
@@ -6,11 +6,10 @@ package:
   version: {{ version.replace('-', '.') }}
 
 source:
-  fn: {{ name }}_{{ version }}.tar.gz
-  url: http://www-fourier.ujf-grenoble.fr/~parisse/debian/dists/stable/main/source/{{ name }}_{{ version }}.tar.gz
-  sha256: 120cd16f2e033817302d2a03a22bd413dc1d85df8b225ba4f76b93a7805b07fe
+  fn: {{ name }}-2.0.0.tar.gz
+  url: https://www-fourier.univ-grenoble-alpes.fr/~parisse/giac/{{ name }}-2.0.0.tar.gz
+  sha256: bf918eae70a0371caa2a7465b8af2e06d547bb5435d2ec5b4b93e0c9bca3ae96
   patches:
-    - 0001-Fix-compilation-without-GUI.patch
     - 0002-Do-not-use-clock_gettime.patch
     - 0003-giac-builds-against-libintl-on-macOS-even-with-GUI-d.patch
     - 0004-Adapt-to-changes-in-pari-2.15.patch
@@ -19,7 +18,7 @@ source:
     - 0007-Do-not-ship-fenv.h-header.patch
 
 build:
-  number: 4
+  number: 0
   skip: true  # [win]
 
 requirements:
