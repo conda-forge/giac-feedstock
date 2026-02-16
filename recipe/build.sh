@@ -9,14 +9,8 @@ sed -i.bak '/^micropython-1.12/d' configure.ac
 sed -i.bak 's/micropython-1.12//g' Makefile.am
 autoreconf -vfi
 
-# giac vendors a version of quickjs that uses fesetround which needs C99
-export CFLAGS="-O2 -g $CFLAGS -std=c99"
+export CFLAGS="-O2 -g $CFLAGS"
 export CXXFLAGS="-O2 -g $CXXFLAGS"
-
-# Need this due to use of register
-export CXXFLAGS=$(echo "${CXXFLAGS}" | sed "s/-std=c++17//g")
-export CXXFLAGS=$(echo "${CXXFLAGS}" | sed "s/-std=c++14//g")
-export CXXFLAGS="$CXXFLAGS -std=c++11"
 
 # Newer clang doesn't like converting non constant values in initializer lists
 sed -i.bak "s/{order,lexvars}/{(short)order,(unsigned char)lexvars}/g" src/solve.cc
