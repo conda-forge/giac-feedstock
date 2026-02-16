@@ -7,7 +7,7 @@ package:
 
 source:
   fn: {{ name }}_{{ version }}.tar.gz
-  url: https://www-fourier.univ-grenoble-alpes.fr/~parisse/debian/dists/stable/main/source/{{ name }}_{{ version }}.tar.gz
+  url: https://github.com/cxzhong/giac-feedstock/releases/download/v{{ version }}/{{ name }}_{{ version }}.tar.gz
   sha256: edfb8a57cc4d943c8df616b5f8d34752314f8443f4359ded8704572f591c0391
   patches:
     - 0002-Do-not-use-clock_gettime.patch
