@@ -30,6 +30,12 @@ find $BUILD_PREFIX -name libgfortran${SHLIB_EXT} -delete
 chmod +x configure
 ./configure --prefix="$PREFIX" --disable-gui --disable-fltk --disable-ao --disable-static --disable-samplerate --disable-micropy
 
+# js.c/js.h are pre-generated in the tarball. The Makefile rebuilds them via mkjs,
+# which is compiled with a hardcoded "g++" that doesn't exist in conda-forge's
+# toolchain (macOS uses clang++, cross-compilation uses a target-arch compiler).
+# Touch the pre-generated files so make skips rebuilding them.
+touch src/js.c src/js.h
+
 make -j${CPU_COUNT}
 
 if [[ "$CONDA_BUILD_CROSS_COMPILATION" != "1" ]]; then
