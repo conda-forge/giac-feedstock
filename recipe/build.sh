@@ -34,7 +34,7 @@ find $PREFIX -name libgfortran${SHLIB_EXT} -delete
 find $BUILD_PREFIX -name libgfortran${SHLIB_EXT} -delete
 
 chmod +x configure
-./configure --prefix="$PREFIX" --disable-gui --disable-ao --disable-static --disable-samplerate --disable-micropy
+./configure --prefix="$PREFIX" --disable-gui --disable-fltk --disable-ao --disable-static --disable-samplerate --disable-micropy
 
 make -j${CPU_COUNT}
 # Enable the following once https://github.com/conda/conda-build/issues/1797 is fixed.
