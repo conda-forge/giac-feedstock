@@ -31,7 +31,9 @@ chmod +x configure
 ./configure --prefix="$PREFIX" --disable-gui --disable-fltk --disable-ao --disable-static --disable-samplerate --disable-micropy
 
 make -j${CPU_COUNT}
-# Enable the following once https://github.com/conda/conda-build/issues/1797 is fixed.
-# Enable patches/nofltk-check.patch as well
-# make check -j${CPU_COUNT}
+
+if [[ "$CONDA_BUILD_CROSS_COMPILATION" != "1" ]]; then
+  make check -j${CPU_COUNT}
+fi
+
 make install
