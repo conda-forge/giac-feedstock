@@ -1,0 +1,26 @@
+diff --git a/src/misc.cc b/src/misc.cc
+index dd920ea..250eaa2 100755
+--- a/src/misc.cc
++++ b/src/misc.cc
+@@ -5485,7 +5485,7 @@ static define_unary_function_eval (__batons,&_batons,_batons_s);
+     gen namesf=evalf(names,1,contextptr);
+     if (myaxes && namesf.type==_VECT && !is_numericv(*namesf._VECTptr))
+       res.push_back(symb_equal(change_subtype(gen(_AXES),_INT_PLOT),2));
+-#if defined HAVE_LIBFLTK && defined GIAC_LMCHANGES // changes by L. Marohnić
++#if defined GIAC_LMCHANGES // changes by L. Marohnić
+     vecteur allvals(0);
+     for (const_iterateur it=vals.begin();it!=vals.end();++it) {
+       if (it->type==_VECT)
+diff --git a/src/plot.h b/src/plot.h
+index 23d89ee..e24b1a7 100755
+--- a/src/plot.h
++++ b/src/plot.h
+@@ -35,7 +35,7 @@
+ #else
+ #ifndef GIAC_HAS_STO_38
+ enum Fl_Color {	// standard colors
+-  FL_BLACK		= 0,
++  FL_BLACK		= 56,
+   FL_RED		= 1,
+   FL_GREEN		= 2,
+   FL_YELLOW		= 3,
