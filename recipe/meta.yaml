@@ -6,9 +6,9 @@ package:
   version: {{ version.replace('-', '.') }}
 
 source:
-  fn: {{ name }}-2.0.0.tar.gz
-  url: https://www-fourier.univ-grenoble-alpes.fr/~parisse/giac/{{ name }}-2.0.0.tar.gz
-  sha256: bf918eae70a0371caa2a7465b8af2e06d547bb5435d2ec5b4b93e0c9bca3ae96
+  fn: {{ name }}_{{ version }}.tar.gz
+  url: https://www-fourier.univ-grenoble-alpes.fr/~parisse/debian/dists/stable/main/source/{{ name }}_{{ version }}.tar.gz
+  sha256: edfb8a57cc4d943c8df616b5f8d34752314f8443f4359ded8704572f591c0391
   patches:
     - 0002-Do-not-use-clock_gettime.patch
     - 0003-giac-builds-against-libintl-on-macOS-even-with-GUI-d.patch
