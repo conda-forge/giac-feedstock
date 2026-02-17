@@ -1,4 +1,4 @@
-{% set version = "1.9.0-21" %}
+{% set version = "2.0.0-19" %}
 {% set name = "giac" %}
 
 package:
@@ -6,21 +6,16 @@ package:
   version: {{ version.replace('-', '.') }}
 
 source:
-  url:
-   - http://www-fourier.ujf-grenoble.fr/~parisse/debian/dists/stable/main/source/giac_{{ version }}.tar.gz
-   - https://github.com/isuruf/isuruf.github.io/releases/download/v1.0/giac_{{ version }}.tar.gz
-  sha256: 120cd16f2e033817302d2a03a22bd413dc1d85df8b225ba4f76b93a7805b07fe
+  url: https://github.com/cxzhong/giac-feedstock/releases/download/v{{ version }}/{{ name }}_{{ version }}.tar.gz
+  sha256: edfb8a57cc4d943c8df616b5f8d34752314f8443f4359ded8704572f591c0391
   patches:
-    - 0001-Fix-compilation-without-GUI.patch
-    - 0002-Do-not-use-clock_gettime.patch
     - 0003-giac-builds-against-libintl-on-macOS-even-with-GUI-d.patch
-    - 0004-Adapt-to-changes-in-pari-2.15.patch
     - 0005-Enable-pari-factorization-in-macOS.patch
     - 0006-Fix-conda-relocation.patch
-    - 0007-Do-not-ship-fenv.h-header.patch
+    - 0007-Fix-Fl_Color-fallback-values-to-match-FLTK.patch
 
 build:
-  number: 4
+  number: 0
   skip: true  # [win]
 
 requirements:
