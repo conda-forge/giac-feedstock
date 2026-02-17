@@ -2,11 +2,10 @@
 {% set name = "giac" %}
 
 package:
-  name: {{ name }}
+  name: giac
   version: {{ version.replace('-', '.') }}
 
 source:
-  fn: {{ name }}_{{ version }}.tar.gz
   url: https://github.com/cxzhong/giac-feedstock/releases/download/v{{ version }}/{{ name }}_{{ version }}.tar.gz
   sha256: edfb8a57cc4d943c8df616b5f8d34752314f8443f4359ded8704572f591c0391
   patches:
@@ -71,9 +70,9 @@ requirements:
 
 test:
   commands:
-    - test -f ${PREFIX}/include/{{ name }}/{{ name }}.h
-    - test -f ${PREFIX}/lib/lib{{ name }}.dylib  # [osx]
-    - test -f ${PREFIX}/lib/lib{{ name }}.so     # [linux]
+    - test -f ${PREFIX}/include/giac/giac.h
+    - test -f ${PREFIX}/lib/libgiac.dylib  # [osx]
+    - test -f ${PREFIX}/lib/libgiac.so     # [linux]
     - giac 1
 
 about:
