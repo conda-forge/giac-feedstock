@@ -38,7 +38,7 @@ touch src/js.c src/js.h
 
 make -j${CPU_COUNT}
 
-if [[ "$CONDA_BUILD_CROSS_COMPILATION" != "1" ]]; then
+if [[ "$CONDA_BUILD_CROSS_COMPILATION" != "1" || "$CROSSCOMPILING_EMULATOR" != "" ]]; then
   if [[ "$target_platform" == "osx-"* ]]; then
     # Some tests may fail on macOS due to platform-specific numerical differences
     make check -j${CPU_COUNT} || true
