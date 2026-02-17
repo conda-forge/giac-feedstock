@@ -1,0 +1,73 @@
+From 5dd626741251eb9e9d8817269f9dd36ae0e0b57a Mon Sep 17 00:00:00 2001
+From: Isuru Fernando <isuruf@gmail.com>
+Date: Fri, 6 Feb 2026 11:23:24 +0100
+Subject: [PATCH 6/7] Fix conda relocation
+
+---
+ src/global.cc | 36 ++++++++++++++++++++++++++++++++++--
+ 1 file changed, 34 insertions(+), 2 deletions(-)
+
+diff --git a/src/global.cc b/src/global.cc
+index 42ed04a..4ad0042 100755
+--- a/src/global.cc
++++ b/src/global.cc
+@@ -143,6 +143,11 @@ int js_token(const char * list,const char * buf){
+   return 0;
+ }
+ 
++#if defined(__APPLE__)
++#define _DARWIN_C_SOURCE
++#endif
++#include <dlfcn.h>
++
+ #ifdef HAVE_LIBMICROPYTHON
+ std::string & python_console(){
+   static std::string * ptr=0;
+@@ -4580,7 +4585,20 @@ extern "C" void Sleep(unsigned int miliSecond);
+       }
+ #endif // GNUWINCE
+ #else
+-      s=giac_aide_location;
++      Dl_info info;
++      if (dladdr((void*)protected_read_config, &info)) {
++        char const * soname = info.dli_fname;
++        s = string(soname);
++        size_t last_slash = s.rfind('/');
++        s = s.substr(0, last_slash+1);
++        if (s.size() > 0) {
++          s += "../share/giac/aide_cas";
++        } else {
++          s=giac_aide_location;
++        }
++      } else {
++        s=giac_aide_location;
++      }
+       s=s.substr(0,s.size()-8);
+ #endif
+       if (s.size())
+@@ -4624,7 +4642,21 @@ extern "C" void Sleep(unsigned int miliSecond);
+ #if defined WIN32 && !defined MINGW
+     return "/cygdrive/c/xcas/";
+ #endif
+-    string s(giac_aide_location); // ".../aide_cas"
++    string s; // ".../aide_cas"
++    Dl_info info;
++    if (dladdr((void*)giac_aide_dir, &info)) {
++      char const * soname = info.dli_fname;
++      s = string(soname);
++      size_t last_slash = s.rfind('/');
++      s = s.substr(0, last_slash+1);
++      if (s.size() > 0) {
++        s += "../share/giac/aide_cas";
++      } else {
++        s=giac_aide_location;
++      }
++    } else {
++      s=giac_aide_location;
++    }
+     // test if aide_cas is there, if not test at xcasroot() return ""
+     if (!access(s.c_str(),R_OK)){
+       s=s.substr(0,s.size()-8);
+-- 
+2.52.0
+

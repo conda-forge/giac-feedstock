@@ -9,7 +9,8 @@ sed -i.bak '/^micropython-1.12/d' configure.ac
 sed -i.bak 's/micropython-1.12//g' Makefile.am
 autoreconf -vfi
 
-export CFLAGS="-O2 -g $CFLAGS"
+# giac vendors a version of quickjs that uses fesetround which needs C99
+export CFLAGS="-O2 -g $CFLAGS -std=c99"
 export CXXFLAGS="-O2 -g $CXXFLAGS"
 
 # Need this due to use of register

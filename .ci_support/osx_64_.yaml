@@ -13,7 +13,7 @@ channel_targets:
 cxx_compiler:
 - clangxx
 cxx_compiler_version:
-- '18'
+- '19'
 gf2x:
 - '1.3'
 glpk:
@@ -39,7 +39,7 @@ mpfr:
 ncurses:
 - '6'
 ntl:
-- 11.4.3
+- 11.6.0
 pari:
 - 2.17.* *_pthread
 readline:

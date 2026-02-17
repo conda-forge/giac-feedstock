@@ -1,0 +1,30 @@
+From 5dd979170b5adb0526225cef6c03f2cc4c92d66f Mon Sep 17 00:00:00 2001
+From: =?UTF-8?q?Julian=20R=C3=BCth?= <julian.rueth@fsfe.org>
+Date: Fri, 6 Feb 2026 11:21:07 +0100
+Subject: [PATCH 5/7] Enable pari factorization in macOS
+
+Patch from github.com/sagemath/sage.
+This reverts the disabling in upstream.
+Reason for disabling was an interruptions problem when linking guis with
+the macos binaries provided by upstream. Can't reproduce.
+---
+ src/ifactor.cc | 3 ---
+ 1 file changed, 3 deletions(-)
+
+diff --git a/src/ifactor.cc b/src/ifactor.cc
+index 2db1a7c..9d7188c 100644
+--- a/src/ifactor.cc
++++ b/src/ifactor.cc
+@@ -4040,9 +4040,6 @@ namespace giac {
+ #endif
+ #ifdef HAVE_LIBPARI
+     if (ifactor_pari){
+-#ifdef __APPLE__
+-      return vecteur(1,gensizeerr(gettext("(Mac OS) Large number, you can try pari(); pari_factor(")+n0.print(contextptr)+")"));
+-#endif
+       gen g(pari_ifactor(n0),contextptr); 
+       if (g.type==_VECT){
+ 	matrice m(mtran(*g._VECTptr));
+-- 
+2.52.0
+

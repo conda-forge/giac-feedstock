@@ -2,27 +2,25 @@
 {% set name = "giac" %}
 
 package:
-  name: {{ name }}
+  name: giac
   version: {{ version.replace('-', '.') }}
 
 source:
-  fn: {{ name }}_{{ version }}.tar.gz
-  url: http://www-fourier.ujf-grenoble.fr/~parisse/debian/dists/stable/main/source/{{ name }}_{{ version }}.tar.gz
+  url:
+   - http://www-fourier.ujf-grenoble.fr/~parisse/debian/dists/stable/main/source/giac_{{ version }}.tar.gz
+   - https://github.com/isuruf/isuruf.github.io/releases/download/v1.0/giac_{{ version }}.tar.gz
   sha256: 120cd16f2e033817302d2a03a22bd413dc1d85df8b225ba4f76b93a7805b07fe
   patches:
     - 0001-Fix-compilation-without-GUI.patch
     - 0002-Do-not-use-clock_gettime.patch
     - 0003-giac-builds-against-libintl-on-macOS-even-with-GUI-d.patch
     - 0004-Adapt-to-changes-in-pari-2.15.patch
-    # Patches taken from github.com/sagemath/sage
-    # enable pari factorization in macos. this reverts the disabling in upstream
-    # Reason for disabling was an interruptions problem when linking guis with
-    # the macos binaries provided by upstream. Can't reproduce
-    - patches/macos-ifactor.patch
-    - patches/conda-relocation.diff
+    - 0005-Enable-pari-factorization-in-macOS.patch
+    - 0006-Fix-conda-relocation.patch
+    - 0007-Do-not-ship-fenv.h-header.patch
 
 build:
-  number: 3
+  number: 4
   skip: true  # [win]
 
 requirements:
@@ -77,9 +75,9 @@ requirements:
 
 test:
   commands:
-    - test -f ${PREFIX}/include/{{ name }}/{{ name }}.h
-    - test -f ${PREFIX}/lib/lib{{ name }}.dylib  # [osx]
-    - test -f ${PREFIX}/lib/lib{{ name }}.so     # [linux]
+    - test -f ${PREFIX}/include/giac/giac.h
+    - test -f ${PREFIX}/lib/libgiac.dylib  # [osx]
+    - test -f ${PREFIX}/lib/libgiac.so     # [linux]
     - giac 1
 
 about:

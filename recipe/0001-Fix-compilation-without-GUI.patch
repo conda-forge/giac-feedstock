@@ -1,7 +1,7 @@
-From 511c605efb8e468df6931009947756b97cfb8cc5 Mon Sep 17 00:00:00 2001
+From f17f4d791e2b3448aae2e369cb9109ae3c4d0bc7 Mon Sep 17 00:00:00 2001
 From: =?UTF-8?q?Julian=20R=C3=BCth?= <julian.rueth@fsfe.org>
 Date: Fri, 30 Sep 2022 10:31:49 +0200
-Subject: [PATCH] Fix compilation without GUI
+Subject: [PATCH 1/7] Fix compilation without GUI
 
 see https://xcas.univ-grenoble-alpes.fr/forum/viewtopic.php?t=2789
 ---
@@ -25,5 +25,5 @@ index ccef3a5..3b8ad9c 100644
  #endif
    //giac::step_infolevel=1;
 -- 
-2.37.3
+2.52.0
 

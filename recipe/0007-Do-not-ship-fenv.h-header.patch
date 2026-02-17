@@ -1,0 +1,46 @@
+From 71e7e54c6bf2ab3d6237eec1a13f540baf47ac8f Mon Sep 17 00:00:00 2001
+From: =?UTF-8?q?Julian=20R=C3=BCth?= <julian.rueth@fsfe.org>
+Date: Fri, 6 Feb 2026 20:35:27 +0100
+Subject: [PATCH 7/7] Do not ship fenv.h header
+
+the intention is probably to use the fenv.h header when no C99 compiler
+is available. However, the code compiles with an `#include <fenv.h>`
+which is intended to not include the local fenv.h header but the system
+one. Somehow `.` is on the search path though, and the wrong header gets
+picked up. Since we don't need this header at all anyway, we can just
+drop it entirely.
+---
+ src/Makefile.am | 2 +-
+ src/fenv.h      | 7 -------
+ 2 files changed, 1 insertion(+), 8 deletions(-)
+ delete mode 100644 src/fenv.h
+
+diff --git a/src/Makefile.am b/src/Makefile.am
+index a104669..0f55688 100644
+--- a/src/Makefile.am
++++ b/src/Makefile.am
+@@ -30,7 +30,7 @@ static.h static_extern.h static_lexer.h static_lexer_.h\
+ lexer_tab_int.h \
+ static_help.h giacPCH.h giacintl.h gmp_replacements.h myostream.h \
+ lpsolve.h optimization.h signalprocessing.h graphe.h graphtheory.h nautywrapper.h markup.h kdisplay.h k_csdk.h k_defs.h \
+-fenv.h libregexp.h libregexp-opcode.h libunicode.h libunicode-table.h \
++libregexp.h libregexp-opcode.h libunicode.h libunicode-table.h \
+ libbf.h list.h cutils.h qjsgiac.h \
+ quickjs.h js.h quickjs-atom.h quickjs-libc.h quickjs-opcode.h bf2gmp.h
+ 
+diff --git a/src/fenv.h b/src/fenv.h
+deleted file mode 100644
+index 8f9f446..0000000
+--- a/src/fenv.h
++++ /dev/null
+@@ -1,7 +0,0 @@
+-#ifndef FENV_H
+-#define FENV_H
+-#define FE_TONEAREST 0
+-#define FE_DOWNWARD 1
+-#define FE_UPWARD 2
+-#define PTHREAD_MUTEX_INITIALIZER 0
+-#endif
+-- 
+2.52.0
+
