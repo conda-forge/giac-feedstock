@@ -1,4 +1,4 @@
-{% set version = "2.0.0-19" %}
+{% set version = "2.0.0-21" %}
 {% set name = "giac" %}
 
 package:
@@ -7,7 +7,7 @@ package:
 
 source:
   url: https://github.com/cxzhong/giac-feedstock/releases/download/v{{ version }}/{{ name }}_{{ version }}.tar.gz
-  sha256: edfb8a57cc4d943c8df616b5f8d34752314f8443f4359ded8704572f591c0391
+  sha256: 3e7fa1c281a21ab74ed66ef247faffe5a105bc11be1f7715f31b4368ce8dcbc8
   patches:
     - 0003-giac-builds-against-libintl-on-macOS-even-with-GUI-d.patch
     - 0005-Enable-pari-factorization-in-macOS.patch
