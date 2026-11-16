@@ -15,7 +15,7 @@ source:
     - 0007-Fix-Fl_Color-fallback-values-to-match-FLTK.patch
 
 build:
-  number: 0
+  number: 1
   skip: true  # [win]
 
 requirements:
