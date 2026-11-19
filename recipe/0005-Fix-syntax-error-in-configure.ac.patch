@@ -1,0 +1,29 @@
+From c203a140d12ec506cb1425b3f839c88de0282ff9 Mon Sep 17 00:00:00 2001
+From: =?UTF-8?q?Julian=20R=C3=BCth?= <julian.rueth@fsfe.org>
+Date: Thu, 19 Nov 2026 00:49:27 -0600
+Subject: [PATCH 5/5] Fix syntax error in configure.ac
+
+---
+ configure.ac | 3 ++-
+ 1 file changed, 2 insertions(+), 1 deletion(-)
+
+diff --git a/configure.ac b/configure.ac
+index 8fbbbf4..f380bfe 100644
+--- a/configure.ac
++++ b/configure.ac
+@@ -527,10 +527,11 @@ dnl		AC_CHECK_LIB(GLU, main)
+ 	      AC_SUBST(FLTK_LIBS)
+               cd src && ln -sf ../fltk-1.3.8 && cd ..
+            fi
+-        fi
+             ])
++fi
+ LIBS="$save_LIBS"
+ 
++
+ AC_CHECK_HEADERS(dfu_lib.h) 
+ AC_CHECK_LIB(usb-1.0,main) 
+ AC_CHECK_LIB(dfu,dfu_main) 
+-- 
+2.56.0
+

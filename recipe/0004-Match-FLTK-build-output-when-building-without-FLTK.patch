@@ -1,8 +1,20 @@
+From 0a7c05205b274650701b15784168463c553ff298 Mon Sep 17 00:00:00 2001
+From: =?UTF-8?q?Julian=20R=C3=BCth?= <julian.rueth@fsfe.org>
+Date: Wed, 18 Nov 2026 23:44:28 -0600
+Subject: [PATCH 4/5] Match FLTK build output when building without FLTK
+
+giac's check/ expected outputs come from an FLTK build, so
+make check fails with --disable-fltk.
+---
+ src/misc.cc | 2 +-
+ src/plot.h  | 2 +-
+ 2 files changed, 2 insertions(+), 2 deletions(-)
+
 diff --git a/src/misc.cc b/src/misc.cc
-index dd920ea..250eaa2 100755
+index 013a3b9..1525c5d 100755
 --- a/src/misc.cc
 +++ b/src/misc.cc
-@@ -5485,7 +5485,7 @@ static define_unary_function_eval (__batons,&_batons,_batons_s);
+@@ -5529,7 +5529,7 @@ static define_unary_function_eval (__batons,&_batons,_batons_s);
      gen namesf=evalf(names,1,contextptr);
      if (myaxes && namesf.type==_VECT && !is_numericv(*namesf._VECTptr))
        res.push_back(symb_equal(change_subtype(gen(_AXES),_INT_PLOT),2));
@@ -24,3 +36,6 @@ index 23d89ee..e24b1a7 100755
    FL_RED		= 1,
    FL_GREEN		= 2,
    FL_YELLOW		= 3,
+-- 
+2.56.0
+

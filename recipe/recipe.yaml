@@ -1,0 +1,96 @@
+schema_version: 1
+
+context:
+  version: 2.0.0-21
+  name: giac
+
+package:
+  name: giac
+  version: ${{ version | replace('-', '.') }}
+
+source:
+  url: https://github.com/cxzhong/giac-feedstock/releases/download/v${{ version }}/${{ name }}_${{ version }}.tar.gz
+  sha256: 3e7fa1c281a21ab74ed66ef247faffe5a105bc11be1f7715f31b4368ce8dcbc8
+  patches:
+    - 0001-giac-builds-against-libintl-on-macOS-even-with-GUI-d.patch
+    - 0002-Enable-pari-factorization-in-macOS.patch
+    - 0003-Fix-conda-relocation.patch
+    - 0004-Match-FLTK-build-output-when-building-without-FLTK.patch
+    - 0005-Fix-syntax-error-in-configure.ac.patch
+
+build:
+  number: 0
+  skip: win
+
+requirements:
+  build:
+    - if: unix
+      then: gnuconfig
+    - ${{ compiler('cxx') }}
+    - ${{ stdlib("c") }}
+    - libtool
+    - automake
+    - gettext-tools
+    - xz-tools
+    - sed
+    - make
+    - flex
+    - bison
+  host:
+    - libblas
+    - libcblas
+    - liblapack
+    - readline
+    - gmp
+    - mpfr
+    - mpfi
+    - ntl
+    - gf2x
+    - gsl
+    - pari
+    - libpng
+    - zlib
+    - if: osx
+      then: gettext
+    - ncurses
+    - ecm
+    - glpk
+    - libcurl
+    - nauty
+  run:
+    - readline
+    - gmp
+    - mpfr
+    - mpfi
+    - ntl
+    - gf2x
+    - ${{ pin_compatible('gsl', upper_bound='x.x') }}
+    - ${{ pin_compatible('pari') }}
+    - libpng
+    - zlib
+    - if: osx
+      then: gettext
+    - ncurses
+    - ${{ pin_compatible('ecm') }}
+    - ${{ pin_compatible('glpk') }}
+    - ${{ pin_compatible('nauty', upper_bound='x') }}
+
+tests:
+  - script:
+      - test -f ${PREFIX}/include/giac/giac.h
+      - if: osx
+        then: test -f ${PREFIX}/lib/libgiac.dylib
+      - if: linux
+        then: test -f ${PREFIX}/lib/libgiac.so
+      - giac 1
+
+about:
+  license: GPL-3.0-or-later
+  license_file: COPYING
+  summary: Giac/Xcas is a free computer algebra system
+  homepage: http://www-fourier.ujf-grenoble.fr/~parisse/giac.html
+
+extra:
+  recipe-maintainers:
+    - isuruf
+    - saraedum
