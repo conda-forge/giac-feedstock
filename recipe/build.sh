@@ -3,6 +3,8 @@
 cp $BUILD_PREFIX/share/gnuconfig/config.* .
 cp $BUILD_PREFIX/share/gnuconfig/config.* ./config
 
+autoreconf -ivf
+
 export CFLAGS="-O2 -g $CFLAGS"
 export CXXFLAGS="-O2 -g $CXXFLAGS"
 
