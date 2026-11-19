@@ -1,7 +1,7 @@
 From a66f6eee48edf90c9601ef488261a09047fe5c3d Mon Sep 17 00:00:00 2001
 From: cxzhong <chenxin.zhong@outlook.com>
 Date: Mon, 16 Feb 2026 14:20:23 +0800
-Subject: [PATCH 3/4] Fix conda relocation
+Subject: [PATCH 3/5] Fix conda relocation
 
 ---
  src/global.cc | 36 ++++++++++++++++++++++++++++++++++--

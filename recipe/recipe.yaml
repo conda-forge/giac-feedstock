@@ -16,6 +16,7 @@ source:
     - 0002-Enable-pari-factorization-in-macOS.patch
     - 0003-Fix-conda-relocation.patch
     - 0004-Match-FLTK-build-output-when-building-without-FLTK.patch
+    - 0005-Fix-syntax-error-in-configure.ac.patch
 
 build:
   number: 0
