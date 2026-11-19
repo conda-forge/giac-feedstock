@@ -12,10 +12,7 @@ source:
   url: https://github.com/cxzhong/giac-feedstock/releases/download/v${{ version }}/${{ name }}_${{ version }}.tar.gz
   sha256: 3e7fa1c281a21ab74ed66ef247faffe5a105bc11be1f7715f31b4368ce8dcbc8
   patches:
-    - 0003-giac-builds-against-libintl-on-macOS-even-with-GUI-d.patch
-    - 0005-Enable-pari-factorization-in-macOS.patch
-    - 0006-Fix-conda-relocation.patch
-    - 0007-Fix-Fl_Color-fallback-values-to-match-FLTK.patch
+    - 0001-Fix-Fl_Color-fallback-values-to-match-FLTK.patch
 
 build:
   number: 0
