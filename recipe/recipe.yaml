@@ -1,12 +1,15 @@
-{% set version = "2.0.0-21" %}
-{% set name = "giac" %}
+schema_version: 1
+
+context:
+  version: 2.0.0-21
+  name: giac
 
 package:
   name: giac
-  version: {{ version.replace('-', '.') }}
+  version: ${{ version | replace('-', '.') }}
 
 source:
-  url: https://github.com/cxzhong/giac-feedstock/releases/download/v{{ version }}/{{ name }}_{{ version }}.tar.gz
+  url: https://github.com/cxzhong/giac-feedstock/releases/download/v${{ version }}/${{ name }}_${{ version }}.tar.gz
   sha256: 3e7fa1c281a21ab74ed66ef247faffe5a105bc11be1f7715f31b4368ce8dcbc8
   patches:
     - 0003-giac-builds-against-libintl-on-macOS-even-with-GUI-d.patch
@@ -16,13 +19,14 @@ source:
 
 build:
   number: 0
-  skip: true  # [win]
+  skip: win
 
 requirements:
   build:
-    - gnuconfig  # [unix]
-    - {{ compiler('cxx') }}
-    - {{ stdlib("c") }}
+    - if: unix
+      then: gnuconfig
+    - ${{ compiler('cxx') }}
+    - ${{ stdlib("c") }}
     - libtool
     - automake
     - gettext-tools
@@ -45,7 +49,8 @@ requirements:
     - pari
     - libpng
     - zlib
-    - gettext   # [osx]
+    - if: osx
+      then: gettext
     - ncurses
     - ecm
     - glpk
@@ -58,28 +63,31 @@ requirements:
     - mpfi
     - ntl
     - gf2x
-    - {{ pin_compatible('gsl', max_pin='x.x') }}
-    - {{ pin_compatible('pari') }}
+    - ${{ pin_compatible('gsl', upper_bound='x.x') }}
+    - ${{ pin_compatible('pari') }}
     - libpng
     - zlib
-    - gettext   # [osx]
+    - if: osx
+      then: gettext
     - ncurses
-    - {{ pin_compatible('ecm') }}
-    - {{ pin_compatible('glpk') }}
-    - {{ pin_compatible('nauty', max_pin='x') }}
+    - ${{ pin_compatible('ecm') }}
+    - ${{ pin_compatible('glpk') }}
+    - ${{ pin_compatible('nauty', upper_bound='x') }}
 
-test:
-  commands:
-    - test -f ${PREFIX}/include/giac/giac.h
-    - test -f ${PREFIX}/lib/libgiac.dylib  # [osx]
-    - test -f ${PREFIX}/lib/libgiac.so     # [linux]
-    - giac 1
+tests:
+  - script:
+      - test -f ${PREFIX}/include/giac/giac.h
+      - if: osx
+        then: test -f ${PREFIX}/lib/libgiac.dylib
+      - if: linux
+        then: test -f ${PREFIX}/lib/libgiac.so
+      - giac 1
 
 about:
-  home: http://www-fourier.ujf-grenoble.fr/~parisse/giac.html
   license: GPL-3.0-or-later
   license_file: COPYING
   summary: Giac/Xcas is a free computer algebra system
+  homepage: http://www-fourier.ujf-grenoble.fr/~parisse/giac.html
 
 extra:
   recipe-maintainers:
