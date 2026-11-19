@@ -1,7 +1,7 @@
 From 0a7c05205b274650701b15784168463c553ff298 Mon Sep 17 00:00:00 2001
 From: =?UTF-8?q?Julian=20R=C3=BCth?= <julian.rueth@fsfe.org>
 Date: Wed, 18 Nov 2026 23:44:28 -0600
-Subject: [PATCH] Match FLTK build output when building without FLTK
+Subject: [PATCH 4/4] Match FLTK build output when building without FLTK
 
 giac's check/ expected outputs come from an FLTK build, so
 make check fails with --disable-fltk.
