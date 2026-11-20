@@ -1,17 +1,17 @@
-From a66f6eee48edf90c9601ef488261a09047fe5c3d Mon Sep 17 00:00:00 2001
+From aa07b8e1090889bc03b63fd9a90c64f10bc2a827 Mon Sep 17 00:00:00 2001
 From: cxzhong <chenxin.zhong@outlook.com>
 Date: Mon, 16 Feb 2026 14:20:23 +0800
-Subject: [PATCH 3/6] Fix conda relocation
+Subject: [PATCH 3/5] Fix conda relocation
 
 ---
  src/global.cc | 36 ++++++++++++++++++++++++++++++++++--
  1 file changed, 34 insertions(+), 2 deletions(-)
 
 diff --git a/src/global.cc b/src/global.cc
-index 4afba32..8d9514b 100644
+index 9d7c7b4..3315728 100644
 --- a/src/global.cc
 +++ b/src/global.cc
-@@ -174,6 +174,11 @@ int js_token(const char * list,const char * buf){
+@@ -178,6 +178,11 @@ int js_token(const char * list,const char * buf){
      return pos;
    }
  
@@ -23,7 +23,7 @@ index 4afba32..8d9514b 100644
  #ifdef HAVE_LIBMICROPYTHON
  std::string & python_console(){
    static std::string * ptr=0;
-@@ -5039,7 +5044,20 @@ extern "C" void Sleep(unsigned int miliSecond);
+@@ -5076,7 +5081,20 @@ extern "C" void Sleep(unsigned int miliSecond);
        }
  #endif // GNUWINCE
  #else
@@ -45,7 +45,7 @@ index 4afba32..8d9514b 100644
        s=s.substr(0,s.size()-8);
  #endif
        if (s.size()){
-@@ -5095,7 +5113,21 @@ extern "C" void Sleep(unsigned int miliSecond);
+@@ -5132,7 +5150,21 @@ extern "C" void Sleep(unsigned int miliSecond);
        return ns;
      }
  #endif // WIN32

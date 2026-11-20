@@ -8,6 +8,14 @@ autoreconf -ivf
 export CFLAGS="-O2 -g $CFLAGS"
 export CXXFLAGS="-O2 -g $CXXFLAGS"
 
+# Several check/ reference outputs (e.g. check/proba.out) compare floating-point
+# results to the last printed digit. GCC contracts a*b+c into fused multiply-add
+# by default on targets with FMA (aarch64, ppc64le), which changes the rounding
+# of the last digit and makes chk_proba fail. Disable contraction so results
+# match the x86_64 reference outputs.
+export CFLAGS="$CFLAGS -ffp-contract=off"
+export CXXFLAGS="$CXXFLAGS -ffp-contract=off"
+
 # Newer clang doesn't like converting non constant values in initializer lists
 sed -i.bak "s/{order,lexvars}/{(short)order,(unsigned char)lexvars}/g" src/solve.cc
 sed -i.bak "s/{order.val,0}/{(short)order.val,0}/g" src/solve.cc
