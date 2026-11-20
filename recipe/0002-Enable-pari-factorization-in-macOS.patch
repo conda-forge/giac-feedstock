@@ -1,7 +1,7 @@
-From 7bbcb7c79847418b07901b3b20ab9877fdebe0fb Mon Sep 17 00:00:00 2001
+From 7e43d759a03cfd51274498855adc078652903005 Mon Sep 17 00:00:00 2001
 From: =?UTF-8?q?Julian=20R=C3=BCth?= <julian.rueth@fsfe.org>
 Date: Fri, 6 Feb 2026 11:21:07 +0100
-Subject: [PATCH 2/6] Enable pari factorization in macOS
+Subject: [PATCH 2/5] Enable pari factorization in macOS
 
 Patch from github.com/sagemath/sage.
 This reverts the disabling in upstream.
@@ -12,10 +12,10 @@ the macos binaries provided by upstream. Can't reproduce.
  1 file changed, 3 deletions(-)
 
 diff --git a/src/ifactor.cc b/src/ifactor.cc
-index 7ff31d7..ac25b14 100644
+index 5376b56..b327037 100644
 --- a/src/ifactor.cc
 +++ b/src/ifactor.cc
-@@ -4041,9 +4041,6 @@ namespace giac {
+@@ -4055,9 +4055,6 @@ namespace giac {
  #endif
  #ifdef HAVE_LIBPARI
      if (ifactor_pari){

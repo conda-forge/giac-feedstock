@@ -1,7 +1,7 @@
-From 2fe3e148893925e3745458193608b52c7c176150 Mon Sep 17 00:00:00 2001
+From df8d44d40c494ae6a325c58e098721ad691f3ff1 Mon Sep 17 00:00:00 2001
 From: =?UTF-8?q?Julian=20R=C3=BCth?= <julian.rueth@fsfe.org>
 Date: Fri, 20 Nov 2026 00:04:04 -0600
-Subject: [PATCH 6/6] Do not confuse std::bitset with pari 2.19 bitset
+Subject: [PATCH 5/5] Do not confuse std::bitset with pari 2.19 bitset
 
 ---
  src/graphe.cc           | 16 ++++++++--------
@@ -93,7 +93,7 @@ index bf30968..7337918 100644
              sets[i++]=k;
      }
 diff --git a/src/signalprocessing.cc b/src/signalprocessing.cc
-index 6108c98..f85c87d 100644
+index 0dbd14a..0278874 100644
 --- a/src/signalprocessing.cc
 +++ b/src/signalprocessing.cc
 @@ -3136,7 +3136,7 @@ bool is_heavisided(const gen &g,const identificateur &x,gen &rest,gen &a,gen &b,
