@@ -17,6 +17,7 @@ source:
     - 0003-Fix-conda-relocation.patch
     - 0004-Match-FLTK-build-output-when-building-without-FLTK.patch
     - 0005-Fix-syntax-error-in-configure.ac.patch
+    - 0006-Do-not-confuse-std-bitset-with-pari-2.19-bitset.patch
 
 build:
   number: 1

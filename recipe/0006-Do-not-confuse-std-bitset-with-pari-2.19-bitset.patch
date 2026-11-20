@@ -1,0 +1,110 @@
+From 2fe3e148893925e3745458193608b52c7c176150 Mon Sep 17 00:00:00 2001
+From: =?UTF-8?q?Julian=20R=C3=BCth?= <julian.rueth@fsfe.org>
+Date: Fri, 20 Nov 2026 00:04:04 -0600
+Subject: [PATCH 6/6] Do not confuse std::bitset with pari 2.19 bitset
+
+---
+ src/graphe.cc           | 16 ++++++++--------
+ src/optimization.cc     |  2 +-
+ src/signalprocessing.cc |  2 +-
+ 3 files changed, 10 insertions(+), 10 deletions(-)
+
+diff --git a/src/graphe.cc b/src/graphe.cc
+index 6b5957c..da5bfd9 100755
+--- a/src/graphe.cc
++++ b/src/graphe.cc
+@@ -568,7 +568,7 @@ bool graphe::rectangle::intersects(vector<rectangle>::const_iterator first,vecto
+ 
+ /* convert number to binary format and return it as gen of type string */
+ gen graphe::to_binary(int number,int chars) {
+-    return str2gen(bitset<32>((unsigned long)number).to_string().substr(32-chars),true);
++    return str2gen(std::bitset<32>((unsigned long)number).to_string().substr(32-chars),true);
+ }
+ 
+ /* make a copy of attr */
+@@ -5776,11 +5776,11 @@ void graphe::make_petersen_graph(int n,int k,layout *x) {
+ }
+ 
+ /* generate all k-sets in a n-set */
+-void graphe::generate_nk_sets(int n,int k,vector<bitset<32> > &v) {
++void graphe::generate_nk_sets(int n,int k,vector<std::bitset<32> > &v) {
+     ulong N=(1<<n);
+     int i=0;
+     for (ulong m=1;m<N;++m) {
+-        bitset<32> b(m);
++      std::bitset<32> b(m);
+         if (b.count()==(size_t)k)
+             v[i++]=b;
+     }
+@@ -5797,13 +5797,13 @@ bool graphe::make_intersection_graph(int n,int k,int sz,bool lab_sets) {
+         make_default_labels(V,nchoosek);
+         add_nodes(V);
+     } else add_nodes(nchoosek);
+-    vector<bitset<32> > vert(nchoosek);
++    vector<std::bitset<32> > vert(nchoosek);
+     vecteur lab;
+     if (supports_attributes() && lab_sets)
+         lab.reserve(n);
+     generate_nk_sets(n,k,vert);
+     for (int i=0;i<nchoosek;++i) {
+-        const bitset<32> &a=vert[i];
++        const std::bitset<32> &a=vert[i];
+         if (supports_attributes() && lab_sets) {
+             lab.clear();
+             for (int c=0;c<n;++c) {
+@@ -5812,7 +5812,7 @@ bool graphe::make_intersection_graph(int n,int k,int sz,bool lab_sets) {
+             node(i).set_label(lab);
+         }
+         for (int j=i+1;j<nchoosek;++j) {
+-            const bitset<32> &b=vert[j];
++            const std::bitset<32> &b=vert[j];
+             if ((a & b).count()==size_t(sz))
+                 add_edge(i,j);
+         }
+@@ -6032,7 +6032,7 @@ bool graphe::make_haar_graph(ulong n) {
+         return false;
+     int k=1+int(std::floor(std::log(n)/M_LN2));
+     this->clear();
+-    bitset<64> be(n);
++    std::bitset<64> be(n);
+     vecteur V;
+     reserve_nodes(2*k);
+     if (supports_attributes()) {
+@@ -15752,7 +15752,7 @@ void graphe::identify_from_sequences(vecteur &spec,int haar_limit) {
+                 ivector d(2*k),d0=degree_sequence();
+                 std::sort(d0.begin(),d0.end());
+                 for (ulong n=lb;n<ub;++n) {
+-                    bitset<64> be(n);
++                  std::bitset<64> be(n);
+                     if (maxdeg!=int(be.count()))
+                         continue;
+                     std::fill(d.begin(),d.end(),0);
+diff --git a/src/optimization.cc b/src/optimization.cc
+index bf30968..7337918 100644
+--- a/src/optimization.cc
++++ b/src/optimization.cc
+@@ -1271,7 +1271,7 @@ void vars_arrangements(matrice J,ipdiff::ivectors &arrs,GIAC_CONTEXT) {
+     vector<ulong> sets(comb(n,m).val);
+     int i=0;
+     for (ulong k=1;k<N;++k) {
+-        bitset<32> b(k);
++      std::bitset<32> b(k);
+         if (b.count()==(size_t)m)
+             sets[i++]=k;
+     }
+diff --git a/src/signalprocessing.cc b/src/signalprocessing.cc
+index 6108c98..f85c87d 100644
+--- a/src/signalprocessing.cc
++++ b/src/signalprocessing.cc
+@@ -3136,7 +3136,7 @@ bool is_heavisided(const gen &g,const identificateur &x,gen &rest,gen &a,gen &b,
+ 
+ void split_operands(const vecteur &v,int sel,gen &a,gen &b,const unary_function_ptr *op) {
+     const_iterateur it=v.begin(),itend=v.end();
+-    bitset<MAX_FACTORS> bs(sel);
++    std::bitset<MAX_FACTORS> bs(sel);
+     vecteur l,r;
+     l.reserve(v.size());
+     r.reserve(v.size());
+-- 
+2.56.1
+
